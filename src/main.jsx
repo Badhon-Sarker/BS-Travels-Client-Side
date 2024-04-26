@@ -14,6 +14,9 @@ import AddTouristsSpot from './PrivateRoutes/AddTouristsSpot/AddTouristsSpot.jsx
 import MyList from './PrivateRoutes/MyList/MyList.jsx';
 import Login from './Routes/Login/Login.jsx';
 import Register from './Routes/Register/Register.jsx';
+import AuthProvider from './Provider/AuthProvider/AuthProvider.jsx';
+import  { Toaster } from 'react-hot-toast';
+import PrivateRoute from './PrivateRoutes/PrivateRoute/PrivateRoute.jsx';
 
 
 
@@ -33,12 +36,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/addTouristsSpot',
-        element: <AddTouristsSpot></AddTouristsSpot>
+        element: <PrivateRoute><AddTouristsSpot></AddTouristsSpot></PrivateRoute>
         
       },
       {
         path: '/myList',
-        element: <MyList></MyList>
+        element: <PrivateRoute><MyList></MyList></PrivateRoute>
       },
       {
         path: '/login',
@@ -58,6 +61,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <AuthProvider>
     <RouterProvider router={router} />
+    </AuthProvider> <Toaster />
   </React.StrictMode>,
 )

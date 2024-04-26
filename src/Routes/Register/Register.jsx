@@ -1,11 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate  } from "react-router-dom";
 import { IoMdEyeOff } from "react-icons/io";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
   const [eye, setEye] = useState(false);
+  const [passErr, setPassErr] = useState([]);
+  const navigate = useNavigate()
+
+  const { registerUser } = useContext(AuthContext);
 
   const handleEye = () => {
     setEye(!eye);
@@ -17,7 +23,35 @@ const Register = () => {
     handleSubmit,
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    const name = data.registerName;
+    const email = data.registerEmail;
+    const photo = data.registerPhoto;
+    const password = data.registerPass;
+
+    if (password.length < 6) {
+      setPassErr("");
+      return setPassErr("Password must have 6 characters");
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      setPassErr("");
+      return setPassErr("Password must have Uppercase");
+    }
+
+    if (!/[a-z]/.test(password)) {
+      setPassErr("");
+      return setPassErr("Password must have Lowercase");
+    }
+
+    registerUser(email, password)
+      .then((result) => {
+        toast.success('Successfully Registered')
+        navigate('/')
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -74,7 +108,7 @@ const Register = () => {
                 type="text"
                 placeholder="Photo URL"
                 className="input input-bordered"
-                {...register("photoURL")}
+                {...register("registerPhoto")}
               />
             </div>
 
@@ -86,22 +120,24 @@ const Register = () => {
               </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type={eye ? "text" : "password"}
                   placeholder="Your password"
                   className="input input-bordered w-full"
                   {...register("registerPass", { required: true })}
                 />
-               
+
                 <div
                   onClick={handleEye}
                   className="absolute ml-52 text-gray-500 -mt-8"
                 >
                   {eye ? <IoEye /> : <IoMdEyeOff />}
                 </div>
+
                 {errors.registerPass?.type === "required" && (
                   <p>Password is required</p>
                 )}
               </div>
+              {passErr && <p>{passErr}</p>}
 
               <div className="flex justify-center gap-1 text-sm text-white font-playfair my-3">
                 <p>Already have an account?</p>{" "}

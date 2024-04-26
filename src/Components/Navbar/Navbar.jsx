@@ -1,6 +1,24 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
+
 
 const Navbar = () => {
+  
+    const { user, logOut } = useContext(AuthContext);
+    
+
+  const handleLogOut = () => {
+    logOut()
+      .then((result) => {
+        toast.success("Successfully Logged Out");
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const links = (
     <div className="flex flex-col lg:flex-row justify-evenly gap-5 font-semibold text-md">
       <NavLink to={"/"}>Home</NavLink>
@@ -45,27 +63,29 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
 
-        
         <div className="navbar-end">
           <div className="flex gap-1">
-            <NavLink to={"/login"} className="btn">
-              Log In
-            </NavLink>
-            <NavLink to={"/register"} className="btn">
-              Register
-            </NavLink>
+            {user ? (
+              <button className="btn" onClick={handleLogOut}>
+                LogOut
+              </button>
+            ) : (
+              <>
+                <NavLink to={"/login"} className="btn">
+                  Log In
+                </NavLink>
+                <NavLink to={"/register"} className="btn">
+                  Register
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
-
 
         <div className="pl-2">
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
-            <input
-              type="checkbox"
-              className="theme-controller"
-              value="dark"
-            />
+            <input type="checkbox" className="theme-controller" value="dark" />
 
             {/* sun icon */}
             <svg

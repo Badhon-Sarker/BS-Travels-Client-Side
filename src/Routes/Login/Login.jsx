@@ -1,17 +1,65 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { IoLogoGoogle } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
+  const { loginUserWithEmailAndPass, googleLogin, githubLogin } = useContext(AuthContext);
+  const location = useLocation()
+  const navigate = useNavigate()
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+ 
   const onSubmit = (data) => {
-    console.log(data)
+    
+
+    const email = data.loginEmail;
+    const password = data.loginPass;
+
+    loginUserWithEmailAndPass(email, password)
+      .then((result) => {
+        toast.success('Successfully Logged In')
+        navigate(location?.state? location.state : '/')
+      })
+      .catch((error) => {
+        toast.error("Invalid email or password")
+      });
+
+
+      
   };
+
+  const handleGoogle = () =>{
+    googleLogin()
+    .then((result) => {
+        toast.success('Successfully Logged In')
+        navigate(location?.state? location.state : '/')
+        
+      })
+      .catch((error) => {
+        toast.error("Failed to Sign In")
+      });
+  }
+
+
+  const handleGithub = () =>{
+    githubLogin()
+    .then((result) => {
+        toast.success('Successfully Logged In')
+        navigate(location?.state? location.state : '/')
+      })
+      .catch((error) => {
+        toast.error("Failed to Sign In")
+      });
+  }
 
   return (
     <div className="hero min-h-screen bg-login-bg ">
@@ -36,7 +84,7 @@ const Login = () => {
                 {...register("loginEmail", { required: true })}
               />
               {errors.loginEmail?.type === "required" && (
-                <p >Email is required</p>
+                <p>Email is required</p>
               )}
             </div>
             <div className="form-control">
@@ -52,7 +100,7 @@ const Login = () => {
                 {...register("loginPass", { required: true })}
               />
               {errors.loginPass?.type === "required" && (
-                <p >Password is required</p>
+                <p>Password is required</p>
               )}
               <label className="label">
                 <a
@@ -79,13 +127,13 @@ const Login = () => {
 
             <div>
               <div className="flex flex-col gap-2">
-                <div className=" bg-red-500 text-white flex justify-center items-center gap-2 py-2 rounded-lg border">
+                <div onClick={handleGoogle} className=" bg-red-500 text-white flex justify-center items-center gap-2 py-2 rounded-lg border">
                   <div>
                     <IoLogoGoogle />
                   </div>
                   <div>Google</div>
                 </div>
-                <div className=" bg-red-500 text-white flex justify-center items-center gap-2 py-2 rounded-lg border">
+                <div onClick={handleGithub} className=" bg-red-500 text-white flex justify-center items-center gap-2 py-2 rounded-lg border">
                   <div>
                     <FaGithub />
                   </div>
