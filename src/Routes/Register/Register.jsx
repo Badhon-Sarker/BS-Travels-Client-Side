@@ -1,17 +1,17 @@
-import { NavLink, useNavigate  } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoMdEyeOff } from "react-icons/io";
 import { useContext, useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const [eye, setEye] = useState(false);
   const [passErr, setPassErr] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, updateUser } = useContext(AuthContext);
 
   const handleEye = () => {
     setEye(!eye);
@@ -25,7 +25,7 @@ const Register = () => {
   const onSubmit = (data) => {
     const name = data.registerName;
     const email = data.registerEmail;
-    const photo = data.registerPhoto;
+    const image = data.registerPhoto;
     const password = data.registerPass;
 
     if (password.length < 6) {
@@ -43,11 +43,17 @@ const Register = () => {
       return setPassErr("Password must have Lowercase");
     }
 
+
     registerUser(email, password)
       .then((result) => {
-        toast.success('Successfully Registered')
-        navigate('/')
-        
+        updateUser(name, image)
+        .then((result) => {
+          toast.success("Successfully Registered");
+          navigate("/");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       })
       .catch((error) => {
         console.error(error);

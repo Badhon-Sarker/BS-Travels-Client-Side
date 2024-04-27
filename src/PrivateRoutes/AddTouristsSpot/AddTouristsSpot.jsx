@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 const AddTouristsSpot = () => {
 
     const {user} = useContext(AuthContext)
+   
 
 
     const handleSubmit = (e) =>{
@@ -21,9 +22,9 @@ const AddTouristsSpot = () => {
         const seasonality = form.season.value
         const travel_time = form.travelTime.value 
         const totaVisitorsPerYear = form.visitors.value
-        const email = user.displayName
-        const name = user.email
-
+        const email = user.email
+        const name = user.displayName
+        
         const data = {image, tourists_spot_name, country_Name, location, description, average_cost, seasonality, travel_time, totaVisitorsPerYear, email, name}
 
         fetch(`http://localhost:5000/addTouristsSpot`, {
@@ -38,6 +39,7 @@ const AddTouristsSpot = () => {
             
             if(data.insertedId){
                 toast.success("Successfully added")
+                form.reset()
             }
         })
         
@@ -92,7 +94,7 @@ const AddTouristsSpot = () => {
             </div>
 
             <div className="w-full">
-              <h1>Select Season *</h1>
+              <h1>Select Seasonality *</h1>
               <select name="season" className="select select-bordered w-full mb-2" required>
               
                 <option value={"Spring"}>Spring</option>
@@ -174,7 +176,7 @@ const AddTouristsSpot = () => {
                 name="name"
                 placeholder="User name"
                 id=""
-                defaultValue={user?.displayName}
+                defaultValue= {user?.displayName}
                 
               />
             </div>
@@ -188,6 +190,7 @@ const AddTouristsSpot = () => {
                 placeholder="User email"
                 id="email"
                 defaultValue={user?.email}
+                required
                
               />
             </div>
