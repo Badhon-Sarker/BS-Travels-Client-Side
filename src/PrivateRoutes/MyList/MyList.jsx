@@ -55,7 +55,7 @@ const MyList = () => {
                 <td>{place.tourists_spot_name}</td>
                 <td>{place.location}</td>
                 <td>{place.average_cost}</td>
-                <td><button className="bg-green-400 text-xl rounded-lg btn text-white"><NavLink to={'/updatePage'}><FaPenNib /></NavLink></button></td>
+                <td><button className="bg-green-400 text-xl rounded-lg btn text-white"><FaPenNib /></button></td>
                 <td><button className="bg-error text-xl rounded-lg btn text-white"><MdDelete /></button></td>
                 
               </tr>

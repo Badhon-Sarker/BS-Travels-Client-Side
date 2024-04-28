@@ -11,7 +11,7 @@ const PlaceCard = ({ place }) => {
   const email = place.email;
   const name = place.name;
 
- 
+
   
 
   return (

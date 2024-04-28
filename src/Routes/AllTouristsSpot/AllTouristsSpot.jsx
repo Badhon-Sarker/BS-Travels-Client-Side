@@ -1,7 +1,7 @@
 import PlaceCard from "../../Components/PlaceCard/PlaceCard";
 import { useEffect, useState } from "react";
 import { BiSolidDownArrow } from "react-icons/bi";
-import { NavLink } from "react-router-dom";
+
 
 const AllTouristsSpot = () => {
   const [places, setPlaces] = useState([]);
@@ -15,7 +15,7 @@ const AllTouristsSpot = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setPlaces(data);
+        // setPlaces(data);
         setDisplayPlace(data)
         setLoading(false);
       });
@@ -23,10 +23,10 @@ const AllTouristsSpot = () => {
 
   const handleSort = () => {
    
-    const sorted = places.sort((p1, p2) => {return (p1.average_cost - p2.average_cost)}
+    const sorted = displayPlace.sort((p1, p2) => {return (p1.average_cost - p2.average_cost)}
     );
 
-    console.log(sorted)
+    
     setDisplayPlace(sorted)
   };
 
@@ -51,9 +51,9 @@ const AllTouristsSpot = () => {
             tabIndex={0}
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100  w-52"
           >
-            <NavLink>
+            
               <li onClick={handleSort}>Cost</li>
-            </NavLink>
+            
           </ul>
         </div>
       </div>

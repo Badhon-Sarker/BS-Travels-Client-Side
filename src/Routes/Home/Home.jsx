@@ -1,6 +1,6 @@
 import Banner from "../../Components/Banner/Banner";
-import TouristSpot from "../../Components/TouristSpot/TouristSpot";
-import AllTouristsSpot from "../AllTouristsSpot/AllTouristsSpot";
+import Country from "../../Components/Country/Country";
+// import AllTouristsSpot from "../AllTouristsSpot/AllTouristsSpot";
 
 
 const Home = () => {
@@ -11,7 +11,9 @@ const Home = () => {
 
         <Banner></Banner>
       
-      <AllTouristsSpot></AllTouristsSpot>
+      {/* <AllTouristsSpot></AllTouristsSpot> */}
+
+      <Country></Country>
       
     </div>
   );
