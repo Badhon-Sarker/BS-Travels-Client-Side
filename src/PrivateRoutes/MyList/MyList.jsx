@@ -1,12 +1,70 @@
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { MdDelete } from "react-icons/md";
+import { FaPenNib } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
 
 const MyList = () => {
+  const { user } = useContext(AuthContext);
+  const [places, setPlaces] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/myList/${user?.email}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setPlaces(data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
     return (
-        <div>
-            <h1>My list</h1>
-            <h3>private</h3>
-            
-        </div>
+      <div className="flex justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
     );
+  }
+
+  return (
+    <div>
+      <h1 className="text-center text-4xl font-playfair font-bold my-5">
+        My List
+      </h1>
+
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr className="font-bold text-black md:text-xl">
+              <th>Serial</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Cost</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {places.map((place, idx) => 
+              <tr key={place._id}>
+                <th>{idx+1}</th>
+                <td>{place.tourists_spot_name}</td>
+                <td>{place.location}</td>
+                <td>{place.average_cost}</td>
+                <td><button className="bg-green-400 text-xl rounded-lg btn text-white"><NavLink to={'/updatePage'}><FaPenNib /></NavLink></button></td>
+                <td><button className="bg-error text-xl rounded-lg btn text-white"><MdDelete /></button></td>
+                
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default MyList;

@@ -1,15 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 
-
-const AddTouristsSpot = () => {
-
+const UpdatePage = () => {
     const {user} = useContext(AuthContext)
    
 
 
-    const handleSubmit = (e) =>{
+    const handleUpdate = (e) =>{
         e.preventDefault()
 
         const form = e.target  
@@ -27,30 +25,30 @@ const AddTouristsSpot = () => {
         
         const data = {image, tourists_spot_name, country_Name, location, description, average_cost, seasonality, travel_time, totaVisitorsPerYear, email, name}
 
-        fetch(`http://localhost:5000/addTouristsSpot`, {
-            method: 'POST',
-            headers: {
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => {
+        console.log(data)
+        // fetch(`http://localhost:5000/addTouristsSpot`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type' : 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
             
-            if(data.insertedId){
-                toast.success("Successfully added")
-                form.reset()
-            }
-        })
-        
+        //     if(data.insertedId){
+        //         toast.success("Successfully added")
+        //         form.reset()
+        //     }
+        // })
     }
-
   return (
     <div>
-      <h1 className="text-5xl font-playfair font-bold text-center my-5">
-        Add Tourists Spot
+      <h1 className="text-center text-4xl font-playfair font-bold my-5">
+        Update Page
       </h1>
-      <form onSubmit={handleSubmit}>
+
+      <form onSubmit={handleUpdate}>
         <div className="border-2 p-2 md:p-5 w-full my-3">
           <div className="md:flex justify-between gap-2">
             <div className="w-full">
@@ -81,8 +79,11 @@ const AddTouristsSpot = () => {
           <div className="md:flex justify-between gap-2 my-2">
             <div className="w-full">
               <h1>Select Country *</h1>
-              <select name="country"  className="select select-bordered w-full mb-2" required>
-                
+              <select
+                name="country"
+                className="select select-bordered w-full mb-2"
+                required
+              >
                 <option value={"France"}>France</option>
                 <option value={"Italy"}>Italy</option>
                 <option value={"Spain"}>Spain</option>
@@ -90,13 +91,15 @@ const AddTouristsSpot = () => {
                 <option value={"Netherlands"}>Netherlands</option>
                 <option value={"Switzerland"}>Switzerland</option>
               </select>
-              
             </div>
 
             <div className="w-full">
               <h1>Select Seasonality *</h1>
-              <select name="season" className="select select-bordered w-full mb-2" required>
-              
+              <select
+                name="season"
+                className="select select-bordered w-full mb-2"
+                required
+              >
                 <option value={"Spring"}>Spring</option>
                 <option value={"Summer"}>Summer</option>
                 <option value={"Autumn"}>Autumn</option>
@@ -167,37 +170,9 @@ const AddTouristsSpot = () => {
             </div>
           </div>
 
-          <div className="md:flex justify-between gap-2">
-            <div className="w-full">
-              <h1>User Name</h1>
-              <input
-                className="w-full border-2 p-2 rounded-md mb-2"
-                type="text"
-                name="name"
-                placeholder="User name"
-                id=""
-                defaultValue= {user?.displayName}
-                
-              />
-            </div>
-
-            <div className="w-full">
-              <h1>User Email</h1>
-              <input
-                className="w-full border-2 p-2 rounded-md mb-2"
-                type="email"
-                name=""
-                placeholder="User email"
-                id="email"
-                defaultValue={user?.email}
-                required
-               
-              />
-            </div>
-          </div>
 
           <div className="flex justify-center my-2">
-            <button className="w-full md:w-1/2 btn">Add </button>
+            <button className="w-full md:w-1/2 btn">Update </button>
           </div>
         </div>
       </form>
@@ -205,4 +180,4 @@ const AddTouristsSpot = () => {
   );
 };
 
-export default AddTouristsSpot;
+export default UpdatePage;

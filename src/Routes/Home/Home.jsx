@@ -1,11 +1,20 @@
+import Banner from "../../Components/Banner/Banner";
+import TouristSpot from "../../Components/TouristSpot/TouristSpot";
+import AllTouristsSpot from "../AllTouristsSpot/AllTouristsSpot";
+
 
 const Home = () => {
-    return (
-        <div>
-            <h1>This is home</h1>
-            
-        </div>
-    );
+  
+
+  return (
+    <div className="my-8 md:my-10">
+
+        <Banner></Banner>
+      
+      <AllTouristsSpot></AllTouristsSpot>
+      
+    </div>
+  );
 };
 
 export default Home;

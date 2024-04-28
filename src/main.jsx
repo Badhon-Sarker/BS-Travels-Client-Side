@@ -17,6 +17,7 @@ import Register from './Routes/Register/Register.jsx';
 import AuthProvider from './Provider/AuthProvider/AuthProvider.jsx';
 import  { Toaster } from 'react-hot-toast';
 import PrivateRoute from './PrivateRoutes/PrivateRoute/PrivateRoute.jsx';
+import UpdatePage from './Routes/UpdatePage/UpdatePage.jsx';
 
 
 
@@ -28,11 +29,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
+       
       },
       {
         path: '/allTouristsSpot',
-        element: <AllTouristsSpot></AllTouristsSpot>
+        element: <AllTouristsSpot></AllTouristsSpot>,
+      
+        
       },
       {
         path: '/addTouristsSpot',
@@ -50,7 +54,12 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/updatePage',
+        element: <UpdatePage></UpdatePage>
       }
+      
     ]
   },
 ]);
