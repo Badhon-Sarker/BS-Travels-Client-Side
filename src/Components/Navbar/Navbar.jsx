@@ -1,24 +1,23 @@
 import { useContext } from "react";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
-
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
-  
-    const { user, logOut } = useContext(AuthContext);
-    
+  const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
       .then((result) => {
         toast.success("Successfully Logged Out");
-        
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
   const links = (
     <div className="flex flex-col lg:flex-row justify-evenly gap-5 font-semibold text-md">
       <NavLink to={"/"}>Home</NavLink>
@@ -66,9 +65,28 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className="flex gap-1">
             {user ? (
-              <button className="btn" onClick={handleLogOut}>
-                LogOut
-              </button>
+              <div className="flex justify-between gap-2 items-center">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <a id="my-anchor-element-id">
+                      <img alt="PhotoURL" src={user?.photoURL} />
+                    </a>
+                    <Tooltip
+                      // Don't forget the `#`!
+                      anchorSelect="#my-anchor-element-id"
+                      content={user.displayName}
+                      place={"left"}
+                    />
+                  </div>
+                </div>
+                <button className="btn" onClick={handleLogOut}>
+                  LogOut
+                </button>
+              </div>
             ) : (
               <>
                 <NavLink to={"/login"} className="btn">

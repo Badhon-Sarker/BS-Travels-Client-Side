@@ -1,20 +1,16 @@
-const PlaceCard = ({ place }) => {
-
+const HomeCard = ({place}) => {
     
-    const photo = place.image;
-    const spotName = place.tourists_spot_name;
-    const country = place.country_Name;
-    const location = place.location;
-    const description = place.description;
-    const cost = place.average_cost;
-    const seasonality = place.seasonality;
-    const time = place.travel_time;
-    const visitors = place.totaVisitorsPerYear;
-    const email = place.email;
-    const name = place.name;
-  
-
-  
+  const photo = place.image;
+  const spotName = place.tourists_spot_name;
+  const country = place.country_Name;
+  const location = place.location;
+  const description = place.description;
+  const cost = place.average_cost;
+  const seasonality = place.seasonality;
+  const time = place.travel_time;
+  const visitors = place.totaVisitorsPerYear;
+  const email = place.email;
+  const name = place.name;
 
   return (
     <div className="p-1">
@@ -50,7 +46,7 @@ const PlaceCard = ({ place }) => {
             </div>{" "}
             <div>
               <h1 className="font-semibold">
-                Visitors: <span className="text-gray-600">{visitors} /Y</span> 
+                Visitors: <span className="text-gray-600">{visitors} /Y</span>
               </h1>
             </div>
           </div>
@@ -64,4 +60,4 @@ const PlaceCard = ({ place }) => {
   );
 };
 
-export default PlaceCard;
+export default HomeCard;

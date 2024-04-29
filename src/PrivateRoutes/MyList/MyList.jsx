@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { MdDelete } from "react-icons/md";
 import { FaPenNib } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MyList = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +18,16 @@ const MyList = () => {
         setPlaces(data);
         setLoading(false);
       });
-  }, []);
+  }, [user.email]);
+
+  const handleDelete =() =>{
+    fetch(`http://localhost:5000/delete/:id`)
+    .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+      })
+    
+  }
 
   if (loading) {
     return (
@@ -55,8 +64,8 @@ const MyList = () => {
                 <td>{place.tourists_spot_name}</td>
                 <td>{place.location}</td>
                 <td>{place.average_cost}</td>
-                <td><button className="bg-green-400 text-xl rounded-lg btn text-white"><FaPenNib /></button></td>
-                <td><button className="bg-error text-xl rounded-lg btn text-white"><MdDelete /></button></td>
+                <td><Link to={`/updatePage/${place._id}`}><button className="bg-green-400 text-xl rounded-lg btn text-white"><FaPenNib /></button></Link></td>
+                <td><button onClick={handleDelete} className="bg-error text-xl rounded-lg btn text-white"><MdDelete /></button></td>
                 
               </tr>
             )}

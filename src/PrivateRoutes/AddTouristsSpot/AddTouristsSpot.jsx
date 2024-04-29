@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 
@@ -35,14 +35,14 @@ const AddTouristsSpot = () => {
             body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(data => {
-            
+        .then(data =>{
+
             if(data.insertedId){
-                toast.success("Successfully added")
+                toast.success("Successfully Added")
                 form.reset()
-            }
-        })
-        
+
+            } 
+        })       
     }
 
   return (

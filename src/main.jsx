@@ -56,9 +56,10 @@ const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
-        path: '/updatePage',
-        element: <UpdatePage></UpdatePage>
-      }
+        path: '/updatePage/:id',
+        element: <PrivateRoute><UpdatePage></UpdatePage></PrivateRoute>
+      },
+      
       
     ]
   },
