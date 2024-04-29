@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { FaPenNib } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyList = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const MyList = () => {
   const [control, setControl] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myList/${user?.email}`, {
+    fetch(`https://assignment-10-server-liart-theta.vercel.app/myList/${user?.email}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -33,7 +34,7 @@ const MyList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://assignment-10-server-liart-theta.vercel.app/delete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -41,7 +42,7 @@ const MyList = () => {
             setControl(!control)
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "Your item has been deleted.",
               icon: "success",
             });
           });
@@ -59,6 +60,7 @@ const MyList = () => {
 
   return (
     <div>
+      <Helmet><title>My List</title></Helmet>
       <h1 className="text-center text-4xl font-playfair font-bold my-5">
         My List
       </h1>

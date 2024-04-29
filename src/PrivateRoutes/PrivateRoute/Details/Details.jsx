@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import { Helmet } from "react-helmet-async";
 // ..
 AOS.init();
 
@@ -10,7 +11,7 @@ const Details = () => {
   const [detailsData, setDetailsData] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/detailsData/${id}`, {
+    fetch(`https://assignment-10-server-liart-theta.vercel.app/detailsData/${id}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -21,6 +22,7 @@ const Details = () => {
 
   return (
     <div className="p-2 md:p-5 lg:p-8 ">
+        <Helmet><title>Details</title></Helmet>
       <div className="flex justify-center">
         <h1 data-aos="fade-down" data-aos-duration="1000" className="text-center text-4xl font-playfair font-bold my-5">
         {detailsData.tourists_spot_name}

@@ -12,7 +12,9 @@ export default {
 
       backgroundImage: {
         'login-bg' : "url('https://i.ibb.co/3Ms79X5/cool-background-1.png')",
-        'register-bg' : "url('https://i.ibb.co/8xrz2Dk/licensed-image.jpg')",
+
+        'register-bg' : "url('https://i.ibb.co/T2KGt3k/cool-background-2.png')",
+
         'slider-one' : "url('https://i.ibb.co/f1GbyMM/Cheapest-time-to-go-to-Paris-October23-Getty-Images.webp')",
 
         'slider-two' : "url('https://i.ibb.co/vLg4GTh/TAL-colosseum-rome-italy-BEAUTEURO0323-9e56ee65cf1b44f1975af842dfc2624c.webp')",

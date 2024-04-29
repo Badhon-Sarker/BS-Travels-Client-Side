@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const UpdatePage = () => {
@@ -12,7 +13,7 @@ const UpdatePage = () => {
    
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/updateSingle/${id}`,{
+        fetch(`https://assignment-10-server-liart-theta.vercel.app/updateSingle/${id}`,{
             method: 'GET'
         })
         .then(res => res.json())
@@ -39,7 +40,7 @@ const UpdatePage = () => {
         const data = {image, tourists_spot_name, country_Name, location, description, average_cost, seasonality, travel_time, totaVisitorsPerYear}
 
 
-        fetch(`http://localhost:5000/updatePage/${id}`, {
+        fetch(`https://assignment-10-server-liart-theta.vercel.app/updatePage/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type' : 'application/json'
@@ -56,6 +57,7 @@ const UpdatePage = () => {
     }
   return (
     <div>
+      <Helmet><title>Update</title></Helmet>
       <h1 className="text-center text-4xl font-playfair font-bold my-5">
         Update Page
       </h1>

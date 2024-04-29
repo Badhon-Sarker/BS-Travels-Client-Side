@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import toast, { Toaster } from 'react-hot-toast';
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { loginUserWithEmailAndPass, googleLogin, githubLogin } = useContext(AuthContext);
@@ -63,6 +64,7 @@ const Login = () => {
 
   return (
     <div className="hero min-h-screen bg-login-bg ">
+      <Helmet><title>Log In</title></Helmet>
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold text-white mt-10 font-playfair">

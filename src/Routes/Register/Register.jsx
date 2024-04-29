@@ -5,6 +5,7 @@ import { IoEye } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [eye, setEye] = useState(false);
@@ -62,6 +63,7 @@ const Register = () => {
 
   return (
     <div className="hero min-h-screen bg-register-bg ">
+      <Helmet><title>Register</title></Helmet>
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold text-white mt-10 font-playfair">

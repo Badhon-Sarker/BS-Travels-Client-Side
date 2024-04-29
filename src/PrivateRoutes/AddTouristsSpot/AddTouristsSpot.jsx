@@ -3,6 +3,7 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import { Helmet } from "react-helmet-async";
 // ..
 AOS.init();
 
@@ -31,7 +32,7 @@ const AddTouristsSpot = () => {
         
         const data = {image, tourists_spot_name, country_Name, location, description, average_cost, seasonality, travel_time, totaVisitorsPerYear, email, name}
 
-        fetch(`http://localhost:5000/addTouristsSpot`, {
+        fetch(`https://assignment-10-server-liart-theta.vercel.app/addTouristsSpot`, {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -51,6 +52,7 @@ const AddTouristsSpot = () => {
 
   return (
     <div data-aos="zoom-in" data-aos-duration="1000">
+      <Helmet><title>Add Tourist Spot</title></Helmet>
       <h1 className="text-5xl font-playfair font-bold text-center my-5">
         Add Tourists Spot
       </h1>

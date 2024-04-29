@@ -22,7 +22,7 @@ const Banner = () => {
  
 
   return (
-    <div data-aos="zoom-in" data-aos-duration="1000">
+    <div data-aos="zoom-in" data-aos-duration="1000 ">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
