@@ -7,6 +7,7 @@ import CountryCard from "../../Components/CountryCard/CountryCard";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import SectionOne from "../../Components/SectionOne/SectionOne";
+import SectionTwo from "../../Components/SectionTwo/SectionTwo";
 // ..
 AOS.init();
 
@@ -46,7 +47,9 @@ const Home = () => {
 
   return (
 
-    <div className="my-6 ">
+    <div className="my-6">
+
+       
 
        
       <Banner></Banner>
@@ -54,7 +57,7 @@ const Home = () => {
 
       {/* tourist spot section */}
       <div  className="my-10">
-        <h1 className="text-center text-4xl font-playfair font-bold my-5">
+      <h1 className="text-center text-4xl font-playfair font-bold my-5">
         Tourists Spot        
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-5">
@@ -80,6 +83,12 @@ const Home = () => {
 
        {/* secion-one */}
       <SectionOne></SectionOne>
+
+
+
+       {/* section-2 */}
+
+       <SectionTwo></SectionTwo>
 
 
     </div>
