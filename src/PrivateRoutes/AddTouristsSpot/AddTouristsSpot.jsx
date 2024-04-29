@@ -1,6 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 
 
 const AddTouristsSpot = () => {
@@ -46,7 +50,7 @@ const AddTouristsSpot = () => {
     }
 
   return (
-    <div>
+    <div data-aos="zoom-in" data-aos-duration="1000">
       <h1 className="text-5xl font-playfair font-bold text-center my-5">
         Add Tourists Spot
       </h1>

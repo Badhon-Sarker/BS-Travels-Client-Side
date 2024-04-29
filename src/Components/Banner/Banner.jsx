@@ -2,6 +2,12 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
+
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,8 +19,10 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const Banner = () => {
+ 
+
   return (
-    <div>
+    <div data-aos="zoom-in" data-aos-duration="1000">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -31,7 +39,7 @@ const Banner = () => {
       >
         <SwiperSlide ><div className=" bg-slider-one h-96 bg-cover flex items-center p-4">
         <div className="text-white">
-            <h1 className="text-2xl font-bold font-playfair my-2">It's time to </h1>
+            <h1 className="text-2xl font-bold font-playfair my-2">It's time to</h1>
             <h1 className="text-5xl font-bold font-playfair my-2">Explore the world</h1>
             <p className="my-3">BS Travels: Your gateway to unforgettable journeys. From exotic destinations to bespoke adventures, we craft personalized experiences tailored to your desires. Let us guide you to your next dream destination with ease</p>
             </div>

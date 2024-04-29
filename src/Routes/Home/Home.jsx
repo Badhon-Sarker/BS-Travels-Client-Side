@@ -4,6 +4,13 @@ import HomeCard from "../../Components/HomeCard/HomeCard";
 import CountryCard from "../../Components/CountryCard/CountryCard";
 
 
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+import SectionOne from "../../Components/SectionOne/SectionOne";
+// ..
+AOS.init();
+
+
 const Home = () => {
   const [data, setData] = useState([]);
   const [countryData, setCountryData] = useState([])
@@ -39,14 +46,16 @@ const Home = () => {
 
   return (
 
-    <div className="my-6 md:mb-10 md:mt-6">
+    <div className="my-6 ">
+
+       
       <Banner></Banner>
 
 
       {/* tourist spot section */}
-      <div className="my-10">
+      <div  className="my-10">
         <h1 className="text-center text-4xl font-playfair font-bold my-5">
-          Tourists Spot
+        Tourists Spot        
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-5">
           {data.map((place) => (
@@ -58,7 +67,7 @@ const Home = () => {
 
          {/* country section */}
 
-      <div className="my-10">
+      <div  className="my-10">
         <h1 className="text-center text-4xl font-playfair font-bold my-5">
           Country
         </h1>
@@ -68,6 +77,9 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+       {/* secion-one */}
+      <SectionOne></SectionOne>
 
 
     </div>

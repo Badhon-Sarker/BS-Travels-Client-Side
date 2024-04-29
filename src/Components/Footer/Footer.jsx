@@ -2,14 +2,31 @@ import { FaFacebook } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 import { BsInstagram } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa6";
+
+import { Typewriter } from 'react-simple-typewriter'
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 const Footer = () => {
+
+
   return (
     <footer>
-      <div className="footer flex flex-col justify-center md:flex-row md:justify-between items-center p-10 bg-blue-200 text-base-content">
+      <div data-aos="fade-up" data-aos-duration="1000" className="footer flex flex-col justify-center md:flex-row md:justify-between items-center p-10 bg-blue-200 text-base-content">
         <aside className="flex flex-col justify-center items-center">
           <div>
             <h1 className="text-3xl font-semibold font-playfair text-center">
-              BS travels
+            <Typewriter
+            words={['BS', 'Travels']}
+            loop={5}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+            
+          />
             </h1>
           </div>
           <div className="font-playfair text-center">
@@ -52,7 +69,7 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </nav>
       </div>
-      <div className="flex flex-col justify-center items-center bg-blue-200 py-4 px-10">
+      <div  className="flex flex-col justify-center items-center bg-blue-200 py-4 px-10">
         <p>Copyright © 2024</p>
         <p> All right reserved by BS Travels</p>
       </div>

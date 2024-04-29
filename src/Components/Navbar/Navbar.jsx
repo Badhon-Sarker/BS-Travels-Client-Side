@@ -4,6 +4,10 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -49,13 +53,14 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-1 z-[10] p-2 shadow bg-base-100 rounded-box w-52"
             >
               {links}
             </ul>
           </div>
           <NavLink>
-            <h1 className="md:text-3xl font-bold">BS Travels</h1>
+            <h1 className="md:text-3xl font-bold">BS Travels
+            </h1>
           </NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
