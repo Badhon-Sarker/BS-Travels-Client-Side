@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import Banner from "../../Components/Banner/Banner";
-import Country from "../../Components/Country/Country";
 import HomeCard from "../../Components/HomeCard/HomeCard";
 import CountryCard from "../../Components/CountryCard/CountryCard";
-// import AllTouristsSpot from "../AllTouristsSpot/AllTouristsSpot";
+
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [countryData, setCountryData] = useState([])
-  const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     fetch("http://localhost:5000/", {

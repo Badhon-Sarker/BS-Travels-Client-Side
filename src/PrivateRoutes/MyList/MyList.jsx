@@ -3,11 +3,13 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { MdDelete } from "react-icons/md";
 import { FaPenNib } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyList = () => {
   const { user } = useContext(AuthContext);
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [control, setControl] = useState(false)
 
   useEffect(() => {
     fetch(`http://localhost:5000/myList/${user?.email}`, {
@@ -18,16 +20,34 @@ const MyList = () => {
         setPlaces(data);
         setLoading(false);
       });
-  }, [user.email]);
+  }, [user, control]);
 
-  const handleDelete =() =>{
-    fetch(`http://localhost:5000/delete/:id`)
-    .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-      })
-    
-  }
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/delete/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setControl(!control)
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          });
+      }
+    });
+  };
 
   if (loading) {
     return (
@@ -58,17 +78,29 @@ const MyList = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {places.map((place, idx) => 
+            {places.map((place, idx) => (
               <tr key={place._id}>
-                <th>{idx+1}</th>
+                <th>{idx + 1}</th>
                 <td>{place.tourists_spot_name}</td>
                 <td>{place.location}</td>
                 <td>{place.average_cost}</td>
-                <td><Link to={`/updatePage/${place._id}`}><button className="bg-green-400 text-xl rounded-lg btn text-white"><FaPenNib /></button></Link></td>
-                <td><button onClick={handleDelete} className="bg-error text-xl rounded-lg btn text-white"><MdDelete /></button></td>
-                
+                <td>
+                  <Link to={`/updatePage/${place._id}`}>
+                    <button className="bg-green-400 text-xl rounded-lg btn text-white">
+                      <FaPenNib />
+                    </button>
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(place._id)}
+                    className="bg-error text-xl rounded-lg btn text-white"
+                  >
+                    <MdDelete />
+                  </button>
+                </td>
               </tr>
-            )}
+            ))}
           </tbody>
         </table>
       </div>

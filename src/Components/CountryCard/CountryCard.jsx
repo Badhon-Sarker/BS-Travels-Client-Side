@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const CountryCard = ({country}) => {
   return (
     <div>
@@ -13,7 +15,7 @@ const CountryCard = ({country}) => {
             <p className="font-semibold font-playfair text-center my-3">{country.description}</p>
           </div>
           <div className="card-actions justify-center">
-            <button className="btn ">View Details</button>
+            <Link ><button className="btn ">View Details</button></Link>
           </div>
         </div>
       </div>

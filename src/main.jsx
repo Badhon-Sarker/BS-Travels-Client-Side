@@ -18,6 +18,7 @@ import AuthProvider from './Provider/AuthProvider/AuthProvider.jsx';
 import  { Toaster } from 'react-hot-toast';
 import PrivateRoute from './PrivateRoutes/PrivateRoute/PrivateRoute.jsx';
 import UpdatePage from './Routes/UpdatePage/UpdatePage.jsx';
+import Details from './PrivateRoutes/PrivateRoute/Details/Details.jsx';
 
 
 
@@ -59,7 +60,10 @@ const router = createBrowserRouter([
         path: '/updatePage/:id',
         element: <PrivateRoute><UpdatePage></UpdatePage></PrivateRoute>
       },
-      
+      {
+        path: '/details/:id',
+        element: <PrivateRoute><Details></Details></PrivateRoute>
+      }
       
     ]
   },
