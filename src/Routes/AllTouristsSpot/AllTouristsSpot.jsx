@@ -26,7 +26,8 @@ const AllTouristsSpot = () => {
     const sorted = displayPlace.sort((p1, p2) => {return (p1.average_cost - p2.average_cost)}
     );
     
-    setDisplayPlace(sorted)
+    setDisplayPlace([...sorted])
+    
   };
 
   if (loading) {

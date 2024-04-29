@@ -22,6 +22,7 @@ import Details from './PrivateRoutes/PrivateRoute/Details/Details.jsx';
 
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",

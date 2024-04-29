@@ -8,6 +8,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import SectionOne from "../../Components/SectionOne/SectionOne";
 import SectionTwo from "../../Components/SectionTwo/SectionTwo";
+import { Link, Navigate } from "react-router-dom";
+
 // ..
 AOS.init();
 
@@ -76,7 +78,7 @@ const Home = () => {
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-5">
           {countryData.map((country) => (
-            <CountryCard key={country._id} country={country}></CountryCard>
+            <CountryCard key={country._id}  country={country}></CountryCard>
           ))}
         </div>
       </div>
