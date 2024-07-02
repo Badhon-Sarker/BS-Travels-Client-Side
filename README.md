@@ -1,7 +1,5 @@
 Website Name: BS Travels
 
-Category: B9 A10 Type-01 Requirements (Europe)
-
 Live site link: https://assignment-10-535b2.web.app/
 
 Features & Characteristics:
@@ -27,3 +25,61 @@ Features & Characteristics:
 ● This site is made with React-simple-typewriter, React-tooltip, React Hook Form, Swiperjs package.
 
 ● This site is responsive for small, medium and large devises.
+
+
+## HTML, CSS, Tailwind, React, Node JS, Express JS, Mongo DB have been used in this project.
+
+
+Follow these instructions to set up and run the project locally on your machine.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version X.X.X)
+- [MongoDB](https://www.mongodb.com/) (version X.X.X)
+- [Git](https://git-scm.com/)
+
+### Installation
+
+1. **Clone the repository**
+
+    ```sh
+    git clone https://github.com/yourusername/your-repo-name.git
+    cd your-repo-name
+    ```
+
+2. **Install dependencies**
+
+    ```sh
+    npm install
+    ```
+
+3. **Set up environment variables**
+
+    Create a `.env` file in the root directory and add the following environment variables:
+
+    ```env
+    PORT=5000
+    MONGODB_URI=mongodb://localhost:27017/your-database-name
+    ```
+
+4. **Start MongoDB**
+
+    Ensure MongoDB is running. You can start MongoDB using:
+
+    ```sh
+    mongod
+    ```
+
+5. **Run the application**
+
+    ```sh
+    npm start
+    ```
+
+    The application should now be running on [http://localhost:5000](http://localhost:5000).
+
+### Additional Notes
+
+- Ensure MongoDB is properly installed and running on your local machine. You can refer to the [MongoDB installation guide](https://docs.mongodb.com/manual/installation/) for detailed instructions.
+- If you encounter any issues, check the console for error messages and ensure all dependencies are correctly installed.
+- For more advanced usage and configuration, refer to the project documentation or source code comments.
